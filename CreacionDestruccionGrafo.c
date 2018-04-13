@@ -36,7 +36,7 @@ Grafo ConstruccionDelGrafo(){
 						vert_input_u = BuscoOAgregoVert(grafo,vertice_u);
 						vert_input_v = BuscoOAgregoVert(grafo,vertice_v);
 						//agrego los vecinos
-						NuevoVecino(vert_input_u,vert_input_v);//nuevo vecino de u y v
+						NuevoVecino(vert_input_v,vert_input_u);//nuevo vecino de u y v
 				}
 		}
 		return grafo;
@@ -60,7 +60,7 @@ sucesivamente*/
         if (g->vertices[i_fbusqueda].nombre == v_nombre) {
             vert_return = &g->vertices[i_fbusqueda];
             n = 0;
-            break;
+						return vert_return;
         }
         else {
             i_fbusqueda++;
@@ -73,8 +73,8 @@ sucesivamente*/
 		g->vertices[i_fbusqueda].grado = 0;
 		g->vertices[i_fbusqueda].color = i_fbusqueda;
 		g->vertices[i_fbusqueda].index = i_fbusqueda;
-		g->vertices[i_fbusqueda].mem_vecinos = 10;
-		g->vertices[i_fbusqueda].tag = v_nombre % (g->nro_vertices);
+		g->vertices[i_fbusqueda].mem_vecinos = 3;
+		g->vertices[i_fbusqueda].tag = i_fbusqueda;
 		g->vertices[i_fbusqueda].vecinos=malloc(g->vertices[i_fbusqueda].mem_vecinos*sizeof(PVertice));
 		g->facil_busqueda[i_fbusqueda] = true;
 		vert_return = &g->vertices[i_fbusqueda];
@@ -88,8 +88,8 @@ void NuevoVecino(PVertice vert_u, PVertice vert_v){
 		//Nuevo vecino "V" para el vertice "U"
 		if((vert_u->mem_vecinos)==(vert_u->grado)){
 			PVertice *vecinos;
-			vecinos = realloc(vert_u->vecinos,(vert_u->mem_vecinos+10)*sizeof(PVertice));
-			vert_u->mem_vecinos=vert_u->mem_vecinos +10;
+			vecinos = realloc(vert_u->vecinos,(vert_u->mem_vecinos+3)*sizeof(PVertice));
+			vert_u->mem_vecinos+=3;
 			vert_u->vecinos = vecinos;
 		}
 		vert_u->vecinos[vert_u->grado] = vert_v;
