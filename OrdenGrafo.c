@@ -33,32 +33,10 @@ void OrdenNatural(Grafo G) {
 }
 
 /* -----------------------------------------------------------------------------*/
-/*
-void OrdenWelshPowell(Grafo G) {
-  u32 grande;
-  PVertice temp;
-  for(u32 i = 0; i < (G->nro_vertices)-1 ;i++){
-      grande = i;
-      for (u32 d = i + 1; d < G->nro_vertices; d++) {
-          if ((G->vertices[grande]).grado < (G->vertices[d].grado)) {
-              grande = d;
-              // busco el vertice con valencia mas grande
-          }
-      }
-      if (grande != i) {
-          // si el mas grande es distinto a donde estoy parado entonces lo swapeo
-          temp = G->orden[i];
-          G->orden[i] = G->orden[grande];
-          G->orden[grande] = temp;
-      }
-  }
-}
-*/
 
 int cmpfuncgrado (const void * a, const void * b) {
 	PVertice vertice_1 = *(PVertice*)a;
 	PVertice vertice_2 = *(PVertice*)b;
-  //int resultado = ( vertice_1->grado )-(vertice_2->grado);
   int resultado = ( vertice_2->grado )-(vertice_1->grado);
 	return resultado;
 }
@@ -97,35 +75,16 @@ void AleatorizarVertices(Grafo G,u32 semilla) {
 }
 
 /* -----------------------------------------------------------------------------*/
-void BloquesCero(Grafo G) {
-  u32 grande;
-  PVertice temp;
-  for (u32 i = 0; i < (G->nro_vertices)-1 ;i++){
-      grande = i;
-      for (u32 d = i + 1; d < G->nro_vertices; d++) {
-          if (G->orden[grande]->color < G->orden[d]->color) {
-              grande = d;
-              // busco el vertice con color mas grande
-          }
-      }
-      if (grande != i) {
-          // si el mas grande es distinto a donde estoy parado entonces lo swapeo
-          temp = G->orden[i];
-          G->orden[i] = G->orden[grande];
-          G->orden[grande] = temp;
-      }
-  }
-}
 
+int cmpfunccolor (const void * a, const void * b) {
+	PVertice vertice_1 = *(PVertice*)a;
+	PVertice vertice_2 = *(PVertice*)b;
+  int resultado = ( vertice_2->color )-(vertice_1->color);
+	return resultado;
+}
 void ReordenManteniendoBloqueColores(Grafo G,u32 x) {
-    u32 color_usado;
-    PVertice temp;
-    PVertice *mi_orden = G->orden;
-    u32 size = G->nro_vertices;
-    u32 nro_colores = G->nro_colores;
-    u32 n_veces = 0;
     if (x == 0)
-        BloquesCero(G);
+        qsort(G->orden, G->nro_vertices, sizeof(PVertice), cmpfunccolor);
     else if (x == 1)
         printf("ReordenManteniendoBloqueColores con 1 - NO LO TENEMOS \n");
 
