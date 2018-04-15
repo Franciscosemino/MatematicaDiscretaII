@@ -26,12 +26,12 @@ u32 NotSoGreedy(Grafo G, u32 semilla) {
     u32 grado = 0;
 		bool use_rand=false;
 
-    G->vertices[0].color = 1;
+    G->orden[0]->color = 1;
     for (u32 u = 1; u < n; u++) {
 			memset(colores_usados, false, (n+1)*sizeof(bool));
-			grado = G->vertices[u].grado;
+			grado = G->orden[u]->grado;
       for (u32 i = 0; i < grado; i++) {
-        color = G->vertices[u].vecinos[i]->color;
+        color = G->orden[u]->vecinos[i]->color;
         if (color!=0) {
             colores_usados[color] = true;
         }
@@ -39,7 +39,7 @@ u32 NotSoGreedy(Grafo G, u32 semilla) {
       for (u32 j = 1; j < n + 1; j++) {
         if (!colores_usados[j]) {
 					if(j>=color_maximo){
-						G->vertices[u].color=j;
+						G->orden[u]->color=j;
 						color_maximo = j;
 						break;
 					}else if(j<color_maximo){
@@ -48,24 +48,20 @@ u32 NotSoGreedy(Grafo G, u32 semilla) {
 					}
 				}
       }
-
 			if(use_rand){
 				bool pintado=false;
 				u32 color_a_usar = 0;
 				u32 x = seed;
 				seed = mi_rand(x);
-				//printf("%u\n",seed );
 				color_a_usar = seed % color_maximo;
 				if(color_a_usar==0){
 					color_a_usar++;
 				}
 				while(!pintado){
 					if(!colores_usados[color_a_usar]){
-						G->vertices[u].color = color_a_usar;
+						G->orden[u]->color = color_a_usar;
 						pintado = true;
 					}else{
-						//printf("%u\n",color_a_usar );
-
 						if(color_a_usar>=color_maximo){
 							color_a_usar=1;
 						}else{
