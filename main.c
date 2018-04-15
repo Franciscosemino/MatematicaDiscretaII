@@ -2,7 +2,7 @@
 ---------------------- PROYECTO DE MATEMATICA DISCRETA 2018 ------------------------
 ------------------------------------------------------------------------------------
     INTEGRANTES: Lucas Astrada - astradalucasezequiel@gmail.com
-                 Jenaro Calviño - jen.calvineo@gmail.com 
+                 Jenaro Calviño - jen.calvineo@gmail.com
                  Francisco Semino - fseminobellville@gmail.com
 -------------------------------------------------------------------------------- */
 #include "TheOutsider.h"
@@ -14,7 +14,7 @@ int main(){
 		tiempo_inicio = clock();
 		Grafo g = ConstruccionDelGrafo();
 
-		
+
 		printf("cant vertices %u\n",NumeroDeVertices(g) );
 		printf("cant lados %u\n", NumeroDeLados(g));
 		printf("cant colores %u\n", NumeroDeColores(g));
@@ -30,7 +30,7 @@ int main(){
 
 /* ------------------------------- CUESTIONES DE ORDEN -------------------------------*/
 
-/*--------------------------------------------------------------- */		
+/*--------------------------------------------------------------- */
 		printf("Sin aplicar Orden\n");
 		for(u32 i = 0 ; i< NumeroDeVertices(g);i++)
 			printf("%u\n", g->orden[i]->nombre);
@@ -48,7 +48,7 @@ int main(){
 		OrdenWelshPowell(g);
 		printf("Orden Orden Wesh Powell\n");
 		for(u32 i = 0 ; i< NumeroDeVertices(g);i++)
-			printf("%u\n", g->orden[i]->nombre);
+			printf("Nombre: %u Grado: %u\n", g->orden[i]->nombre, g->orden[i]->grado);
 		printf("NotSoGreedy Inmediatamente despues de aplicar Wesh Powell con semilla 1 : %u\n", NotSoGreedy(g,1));
 
 /*--------------------------------------------------------------- */
@@ -59,7 +59,7 @@ int main(){
 			printf("%u\n", g->orden[i]->nombre);
 		printf("NotSoGreedy Inmediatamente despues de aplicar Aleatorizar Vertices con semilla 1 : %u\n", NotSoGreedy(g,1));
 /*--------------------------------------------------------------- */
-		
+
 		ReordenManteniendoBloqueColores(g, 0);
 		for(u32 i = 0; i< NumeroDeVertices(g); i++)
 			printf("%u\n", g->orden[i]->nombre);
@@ -70,7 +70,7 @@ int main(){
 		ReordenManteniendoBloqueColores(g, 2);
 		//for(u32 i = 0; i< NumeroDeVertices(g); i++)
 			//printf("%u\n", g->orden[i]->nombre);
-		
+
 		/* --------------------------------------*/
 
 		tiempo_final = clock();

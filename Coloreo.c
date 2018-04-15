@@ -2,15 +2,18 @@
 ---------------------- PROYECTO DE MATEMATICA DISCRETA 2018 ------------------------
 ------------------------------------------------------------------------------------
     INTEGRANTES: Lucas Astrada - astradalucasezequiel@gmail.com
-                 Jenaro Calviño - jen.calvineo@gmail.com 
+                 Jenaro Calviño - jen.calvineo@gmail.com
                  Francisco Semino - fseminobellville@gmail.com
 -------------------------------------------------------------------------------- */
 #include "TheOutsider.h"
 
 u32 mi_rand(u32 semilla) {
+	if(semilla==0){
+		semilla+=217;
+	}
    u32 bit;
-   u32 seed = semilla;
-   bit  = ((seed >> 0) ^ (seed >> 2) ^ (seed >> 3) ^ (seed >> 5) ) & 1;
+	 u32 seed = semilla;
+	 bit  = ((seed >> 0) ^ (seed >> 2) ^ (seed >> 3) ^ (seed >> 5) ) & 1;
    return seed =  (seed >> 1) | (bit << 31);
 }
 
@@ -21,11 +24,8 @@ u32 NotSoGreedy(Grafo G, u32 semilla) {
     u32 color_maximo = 1;
     bool colores_usados[n+1];
     u32 grado = 0;
-		u32 colores_disponibles[n];
-		memset(colores_disponibles, 0, (n+1)*sizeof(u32));
-		for(u32 i = 0; i < n ; i ++ ){
-			G->vertices[i].color=0;
-		}
+		bool use_rand=false;
+
     G->vertices[0].color = 1;
     for (u32 u = 1; u < n; u++) {
 			memset(colores_usados, false, (n+1)*sizeof(bool));
@@ -36,31 +36,46 @@ u32 NotSoGreedy(Grafo G, u32 semilla) {
             colores_usados[color] = true;
         }
       }
-			int indice_color_disp = 0;
       for (u32 j = 1; j < n + 1; j++) {
         if (!colores_usados[j]) {
-					if(j<=color_maximo){
-						colores_disponibles[indice_color_disp]=j;
-						indice_color_disp++;
-						if(color_maximo==j){
+					if(j>=color_maximo){
+						G->vertices[u].color=j;
+						color_maximo = j;
+						break;
+					}else if(j<color_maximo){
+							use_rand= true;
 							break;
-						}
-					}else if(j>color_maximo&&colores_disponibles[0]==0){
-						G->vertices[u].color = j;
-            color_maximo = j;
-            break;
-					} else if (j>color_maximo&&colores_disponibles[0]!=0){break;}
+					}
 				}
       }
 
-			if(colores_disponibles[0]!=0 && indice_color_disp!=0){
+			if(use_rand){
+				bool pintado=false;
 				u32 color_a_usar = 0;
 				u32 x = seed;
 				seed = mi_rand(x);
-				color_a_usar = seed % indice_color_disp;
-				G->vertices[u].color = colores_disponibles[color_a_usar];
-				memset(colores_disponibles, 0, (n)*sizeof(u32));
+				//printf("%u\n",seed );
+				color_a_usar = seed % color_maximo;
+				if(color_a_usar==0){
+					color_a_usar++;
+				}
+				while(!pintado){
+					if(!colores_usados[color_a_usar]){
+						G->vertices[u].color = color_a_usar;
+						pintado = true;
+					}else{
+						//printf("%u\n",color_a_usar );
+
+						if(color_a_usar>=color_maximo){
+							color_a_usar=1;
+						}else{
+							color_a_usar++;
+						}
+					}
+				}
+
 			}
+
   }
 	G->nro_colores=color_maximo;
 	return color_maximo;

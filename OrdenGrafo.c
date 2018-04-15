@@ -2,7 +2,7 @@
 ---------------------- PROYECTO DE MATEMATICA DISCRETA 2018 ------------------------
 ------------------------------------------------------------------------------------
     INTEGRANTES: Lucas Astrada - astradalucasezequiel@gmail.com
-                 Jenaro Calviño - jen.calvineo@gmail.com 
+                 Jenaro Calviño - jen.calvineo@gmail.com
                  Francisco Semino - fseminobellville@gmail.com
 -------------------------------------------------------------------------------- */
 #include "TheOutsider.h"
@@ -22,16 +22,18 @@ void OrdenNatural(Grafo G) {
 }
 */
 int cmpfunc (const void * a, const void * b) {
-   return ( (int)a - (int)b );
+	PVertice vertice_1 = *(PVertice*)a;
+	PVertice vertice_2 = *(PVertice*)b;
+  int resultado = ( vertice_1->nombre )-(vertice_2->nombre);
+	return resultado;
 }
 
 void OrdenNatural(Grafo G) {
     qsort(G->orden, G->nro_vertices, sizeof(PVertice), cmpfunc);
 }
 
-
 /* -----------------------------------------------------------------------------*/
-
+/*
 void OrdenWelshPowell(Grafo G) {
   u32 grande;
   PVertice temp;
@@ -51,7 +53,17 @@ void OrdenWelshPowell(Grafo G) {
       }
   }
 }
+*/
 
+int cmpfuncgrado (const void * a, const void * b) {
+	PVertice vertice_1 = *(PVertice*)a;
+	PVertice vertice_2 = *(PVertice*)b;
+  int resultado = ( vertice_1->grado )-(vertice_2->grado);
+	return resultado;
+}
+void OrdenWelshPowell(Grafo G){
+	qsort(G->orden,G->nro_vertices,sizeof(PVertice), cmpfuncgrado);
+}
 /* -----------------------------------------------------------------------------*/
 // FUNCIONA
 
@@ -119,4 +131,3 @@ void ReordenManteniendoBloqueColores(Grafo G,u32 x) {
         printf("ReordenManteniendoBloqueColores con mas grande que uno - NO LO TENEMOS \n");
 }
 /* -----------------------------------------------------------------------------*/
-
