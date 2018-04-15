@@ -82,13 +82,24 @@ int cmpfunccolor (const void * a, const void * b) {
   int resultado = ( vertice_2->color )-(vertice_1->color);
 	return resultado;
 }
+
+int cmpfuncaleat(const void * a, const void * b){
+	PVertice vertice_1 = *(PVertice*)a;
+	PVertice vertice_2 = *(PVertice*)b;
+	vertice_1->aleatorio = mi_rand(vertice_1->color)-(vertice_1->x_aleatorio);
+	vertice_2->aleatorio = mi_rand(vertice_2->color)-(vertice_2->x_aleatorio);
+	int resultado = (vertice_1->aleatorio>vertice_2->aleatorio);
+	return resultado;
+
+}
 void ReordenManteniendoBloqueColores(Grafo G,u32 x) {
     if (x == 0)
         qsort(G->orden, G->nro_vertices, sizeof(PVertice), cmpfunccolor);
     else if (x == 1)
         printf("ReordenManteniendoBloqueColores con 1 - NO LO TENEMOS \n");
-
     else if (x > 1)
-        printf("ReordenManteniendoBloqueColores con mas grande que uno - NO LO TENEMOS \n");
-}
+			for(u32 i = 0; i < G->nro_vertices; i++){
+				G->vertices[i].x_aleatorio= x;
+			}
+			qsort(G->orden, G->nro_vertices, sizeof(PVertice), cmpfuncaleat);}
 /* -----------------------------------------------------------------------------*/

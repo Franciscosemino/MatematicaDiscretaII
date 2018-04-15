@@ -2,7 +2,7 @@
 ---------------------- PROYECTO DE MATEMATICA DISCRETA 2018 ------------------------
 ------------------------------------------------------------------------------------
     INTEGRANTES: Lucas Astrada - astradalucasezequiel@gmail.com
-                 Jenaro Calviño - jen.calvineo@gmail.com 
+                 Jenaro Calviño - jen.calvineo@gmail.com
                  Francisco Semino - fseminobellville@gmail.com
 -------------------------------------------------------------------------------- */
 #include <stdint.h>
@@ -11,7 +11,7 @@
 #include <stdbool.h>
 #include <time.h>
 #include <string.h>
-#include <assert.h> 
+#include <assert.h>
 
 #define BUFFER_SIZE 1024
 
@@ -29,6 +29,8 @@ struct _Vertice_t {
     u32 index;
 		u32 mem_vecinos;
 		u32 tag;
+		u32 x_aleatorio;//u32 para uso exclusivo en funcion orden aleatorio
+		u32 aleatorio;//u32 para uso exclusivo en funcion orden aleatorio
     PVertice *vecinos;
 };
 
