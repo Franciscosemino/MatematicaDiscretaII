@@ -58,7 +58,8 @@ void OrdenWelshPowell(Grafo G) {
 int cmpfuncgrado (const void * a, const void * b) {
 	PVertice vertice_1 = *(PVertice*)a;
 	PVertice vertice_2 = *(PVertice*)b;
-  int resultado = ( vertice_1->grado )-(vertice_2->grado);
+  //int resultado = ( vertice_1->grado )-(vertice_2->grado);
+  int resultado = ( vertice_2->grado )-(vertice_1->grado);
 	return resultado;
 }
 void OrdenWelshPowell(Grafo G){
