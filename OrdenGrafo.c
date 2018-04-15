@@ -123,11 +123,12 @@ void ReordenManteniendoBloqueColores(Grafo G,u32 x) {
     PVertice *mi_orden = G->orden;
     u32 size = G->nro_vertices;
     u32 nro_colores = G->nro_colores;
-    u32 n_veces = 0;;
+    u32 n_veces = 0;
     if (x == 0)
         BloquesCero(G);
     else if (x == 1)
         printf("ReordenManteniendoBloqueColores con 1 - NO LO TENEMOS \n");
+
     else if (x > 1)
         printf("ReordenManteniendoBloqueColores con mas grande que uno - NO LO TENEMOS \n");
 }
