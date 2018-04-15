@@ -1,5 +1,11 @@
+/* ---------------------------------------------------------------------------------
+---------------------- PROYECTO DE MATEMATICA DISCRETA 2018 ------------------------
+------------------------------------------------------------------------------------
+    INTEGRANTES: Lucas Astrada - astradalucasezequiel@gmail.com
+                 Jenaro Calviño - jen.calvineo@gmail.com 
+                 Francisco Semino - fseminobellville@gmail.com
+-------------------------------------------------------------------------------- */
 #include "TheOutsider.h"
-
 
 Grafo ConstruccionDelGrafo(){
     char linea[BUFFER_SIZE];
@@ -22,7 +28,7 @@ Grafo ConstruccionDelGrafo(){
 		grafo->nro_colores=n_vertices;
 		grafo->vertices=calloc(n_vertices,sizeof(struct _Vertice_t));
 		grafo->orden=malloc(n_vertices*sizeof(PVertice));
-		grafo->orden_natural=malloc(n_vertices*sizeof(PVertice));
+		//grafo->orden_natural=malloc(n_vertices*sizeof(PVertice));
 		grafo->facil_busqueda = malloc(n_vertices*sizeof(bool));
 		memset(grafo->facil_busqueda, false, (n_vertices)*sizeof(bool));
 		//carga de lados y vertices
@@ -39,6 +45,11 @@ Grafo ConstruccionDelGrafo(){
 						NuevoVecino(vert_input_v,vert_input_u);//nuevo vecino de u y v
 				}
 		}
+		/*
+		grafo->orden = &grafo->vertices;
+		for (u32 i = 0; i < grafo->nro_vertices; i++)
+			printf("%u\n", grafo->orden[i]->nombre);
+			*/
 		return grafo;
 }
 
@@ -77,8 +88,12 @@ sucesivamente*/
 		g->vertices[i_fbusqueda].tag = i_fbusqueda;
 		g->vertices[i_fbusqueda].vecinos=malloc(g->vertices[i_fbusqueda].mem_vecinos*sizeof(PVertice));
 		g->facil_busqueda[i_fbusqueda] = true;
+		g->orden[i_fbusqueda] = &g->vertices[i_fbusqueda];
 		vert_return = &g->vertices[i_fbusqueda];
 
+
+		// Llenado de orden
+		//g->orden[i_fbusqueda] = vert_return;
 
 		return vert_return;
 
@@ -111,6 +126,6 @@ void DestruccionDelGrafo(Grafo g){
 			free(g->vertices[i].vecinos);
 	free(g->vertices);
 	free(g->orden);
-	free(g->orden_natural);
+	//free(g->orden_natural);
 	free(g);
 }

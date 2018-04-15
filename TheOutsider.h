@@ -1,9 +1,17 @@
+/* ---------------------------------------------------------------------------------
+---------------------- PROYECTO DE MATEMATICA DISCRETA 2018 ------------------------
+------------------------------------------------------------------------------------
+    INTEGRANTES: Lucas Astrada - astradalucasezequiel@gmail.com
+                 Jenaro Calviño - jen.calvineo@gmail.com 
+                 Francisco Semino - fseminobellville@gmail.com
+-------------------------------------------------------------------------------- */
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
 #include <time.h>
 #include <string.h>
+#include <assert.h> 
 
 #define BUFFER_SIZE 1024
 
@@ -31,7 +39,7 @@ struct _Grafo_t {
     PVertice vertices;
 		bool *facil_busqueda;
     PVertice *orden;
-    PVertice *orden_natural;
+    //PVertice *orden_natural;
 };
 
 //ESTRUCTURAS DE COLA

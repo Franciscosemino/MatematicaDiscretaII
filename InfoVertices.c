@@ -1,5 +1,11 @@
+/* ---------------------------------------------------------------------------------
+---------------------- PROYECTO DE MATEMATICA DISCRETA 2018 ------------------------
+------------------------------------------------------------------------------------
+    INTEGRANTES: Lucas Astrada - astradalucasezequiel@gmail.com
+                 Jenaro Calviño - jen.calvineo@gmail.com 
+                 Francisco Semino - fseminobellville@gmail.com
+-------------------------------------------------------------------------------- */
 #include "TheOutsider.h"
-
 
 u32 NombreDelVertice(Grafo G, u32 i){
 	return G->vertices[i].nombre;

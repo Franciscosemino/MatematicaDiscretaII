@@ -1,8 +1,15 @@
+/* ---------------------------------------------------------------------------------
+---------------------- PROYECTO DE MATEMATICA DISCRETA 2018 ------------------------
+------------------------------------------------------------------------------------
+    INTEGRANTES: Lucas Astrada - astradalucasezequiel@gmail.com
+                 Jenaro Calviño - jen.calvineo@gmail.com 
+                 Francisco Semino - fseminobellville@gmail.com
+-------------------------------------------------------------------------------- */
 #include "TheOutsider.h"
 
 u32 mi_rand(u32 semilla) {
    u32 bit;
-	 u32 seed = semilla;
+   u32 seed = semilla;
    bit  = ((seed >> 0) ^ (seed >> 2) ^ (seed >> 3) ^ (seed >> 5) ) & 1;
    return seed =  (seed >> 1) | (bit << 31);
 }
@@ -83,7 +90,7 @@ int Bipartito (Grafo G) {
             // While para desencolar q
             while(!isEmpty(q)) {
                 vertice = Dequeue(q);
-                // For para recorrer los vecino.
+                // For para recorrer los vecinos.
                 for(u32 i = 0; i < vertice->grado; i++) {
                     // Si el vecino no tiene color, se encola y se colorea.
                     if(vertice->vecinos[i]->color == 0) {
