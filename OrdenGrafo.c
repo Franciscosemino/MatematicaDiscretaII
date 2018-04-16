@@ -94,7 +94,8 @@ int cmpfuncApariciones (const void * a, const void * b){
 int cmpfunccantcolor (const void * a, const void * b) {
   PVertice vertice_1 = *(PVertice*)a;
   PVertice vertice_2 = *(PVertice*)b;
-  int resultado = (vertice_1->cant_de_colores)>(vertice_2->cant_de_colores);
+  //int resultado = (vertice_1->cant_de_colores)>(vertice_2->cant_de_colores);
+  int resultado = (vertice_1->cant_de_colores)-(vertice_2->cant_de_colores);
   return resultado;
 }
 
@@ -118,6 +119,7 @@ void ReordenManteniendoBloqueColores(Grafo G,u32 x) {
         //printf("G->orden[i]->color: %u G->orden[i]->cant_de_colores:%u\n", G->orden[i]->color, G->orden[i]->cant_de_colores);
       }
       printf("\n");
+      qsort(G->orden, G->nro_vertices, sizeof(PVertice), cmpfunccolor);
       qsort(G->orden, G->nro_vertices, sizeof(PVertice), cmpfunccantcolor);
 
 

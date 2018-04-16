@@ -41,7 +41,7 @@ int main(){
 		printf("Not So Greedy con semilla 1 : %u\n", NotSoGreedy(g,1));
 		ReordenManteniendoBloqueColores(g,1);
 		for(u32 i = 0; i< NumeroDeVertices(g); i++)
-      	printf("Nombre: %u Grado: %u Color: %u\n", g->orden[i]->nombre, g->orden[i]->grado,g->orden[i]->color);
+      	printf("Nombre: %u, Grado: %u, Color: %u, Cant Apariciones %u\n", g->orden[i]->nombre, g->orden[i]->grado,g->orden[i]->color, g->orden[i]->cant_de_colores);
 		//for(u32 i= 0; i<10;i++) // 10 Cortidas de NotSoGreedy
 			//printf("cantida de colores NotSoGreedy: %u\n", NotSoGreedy(g,i));
 
@@ -84,9 +84,9 @@ int main(){
 			printf("ORDEN BLOQUE 0: %u\n", g->orden[i]->color);
 		printf("NotSoGreedy Inmediatamente despues de aplicar ReordenManteniendoBloqueColores con semilla 0 y NotSoGreedy con semilla 1: %u\n", NotSoGreedy(g,1));
 		*/
-		ReordenManteniendoBloqueColores(g, 1);
-		for(u32 i = 0; i< NumeroDeVertices(g); i++)
-			printf("%u\n", g->orden[i]->nombre);
+		//ReordenManteniendoBloqueColores(g, 1);
+		//for(u32 i = 0; i< NumeroDeVertices(g); i++)
+			//printf("%u\n", g->orden[i]->nombre);
 		/*
     for (u32 j = 0; j<5; j++) {
   		ReordenManteniendoBloqueColores(g, 2);
