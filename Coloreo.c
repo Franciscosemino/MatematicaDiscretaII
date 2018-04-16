@@ -77,8 +77,6 @@ u32 NotSoGreedy(Grafo G, u32 semilla) {
 	return color_maximo;
 }
 
-
-
 int Bipartito (Grafo G) {
 		PVertice x;
     PVertice vertice = NULL;

@@ -7,7 +7,6 @@
 -------------------------------------------------------------------------------- */
 #include "TheOutsider.h"
 
-/* -----------------------------------------------------------------------------*/
 
 int cmpfunc (const void * a, const void * b) {
 	PVertice vertice_1 = *(PVertice*)a;
@@ -20,8 +19,6 @@ void OrdenNatural(Grafo G) {
     qsort(G->orden, G->nro_vertices, sizeof(PVertice), cmpfunc);
 }
 
-/* -----------------------------------------------------------------------------*/
-
 int cmpfuncgrado (const void * a, const void * b) {
 	PVertice vertice_1 = *(PVertice*)a;
 	PVertice vertice_2 = *(PVertice*)b;
@@ -31,7 +28,6 @@ int cmpfuncgrado (const void * a, const void * b) {
 void OrdenWelshPowell(Grafo G){
 	qsort(G->orden,G->nro_vertices,sizeof(PVertice), cmpfuncgrado);
 }
-/* -----------------------------------------------------------------------------*/
 
 int cmpfunccolor (const void * a, const void * b) {
 	PVertice vertice_1 = *(PVertice*)a;
@@ -43,7 +39,6 @@ int cmpfunccolor (const void * a, const void * b) {
 int cmpfunccantcolor (const void * a, const void * b) {
   PVertice vertice_1 = *(PVertice*)a;
   PVertice vertice_2 = *(PVertice*)b;
-  //int resultado = (vertice_1->cant_de_colores)>(vertice_2->cant_de_colores);
   int resultado = (vertice_1->cant_de_colores)-(vertice_2->cant_de_colores);
   return resultado;
 }
@@ -74,4 +69,3 @@ void ReordenManteniendoBloqueColores(Grafo G,u32 x) {
 			qsort(G->orden, G->nro_vertices, sizeof(PVertice), cmpfuncaleat);
     }
 }
-/* -----------------------------------------------------------------------------*/

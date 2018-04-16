@@ -15,7 +15,7 @@ void DestruirQueue(Queue q) {
 void Enqueue(Queue q, PVertice v) {
     q->tail++;
     q->theQueue[q->tail] = v;
-	}
+}
 
 PVertice Dequeue(Queue q) {
     PVertice v;

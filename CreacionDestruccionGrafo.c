@@ -28,7 +28,6 @@ Grafo ConstruccionDelGrafo(){
 		grafo->nro_colores=n_vertices;
 		grafo->vertices=calloc(n_vertices,sizeof(struct _Vertice_t));
 		grafo->orden=malloc(n_vertices*sizeof(PVertice));
-		//grafo->orden_natural=malloc(n_vertices*sizeof(PVertice));
 		grafo->facil_busqueda = malloc(n_vertices*sizeof(bool));
 		memset(grafo->facil_busqueda, false, (n_vertices)*sizeof(bool));
 		//carga de lados y vertices
