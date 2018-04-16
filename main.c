@@ -51,26 +51,58 @@ int main(){
 			printf("Nombre: %u Grado: %u\n", g->orden[i]->nombre, g->orden[i]->grado);
 		printf("NotSoGreedy Inmediatamente despues de aplicar Wesh Powell con semilla 1 : %u\n", NotSoGreedy(g,1));
 
-/*--------------------------------------------------------------- */
-
-		AleatorizarVertices(g, 1);
-		printf("AleatorizarVertices\n");
-		for(u32 i = 0; i< NumeroDeVertices(g); i++)
-			printf("%u\n", g->orden[i]->nombre);
-		printf("NotSoGreedy Inmediatamente despues de aplicar Aleatorizar Vertices con semilla 1 : %u\n", NotSoGreedy(g,1));
-/*--------------------------------------------------------------- */
+// /*--------------------------------------------------------------- */
+//
+// 		AleatorizarVertices(g, 1);
+// 		printf("AleatorizarVertices\n");
+// 		for(u32 i = 0; i< NumeroDeVertices(g); i++)
+// 			printf("%u\n", g->orden[i]->nombre);
+// 		printf("NotSoGreedy Inmediatamente despues de aplicar Aleatorizar Vertices con semilla 1 : %u\n", NotSoGreedy(g,1));
+// /*--------------------------------------------------------------- */
 
 		ReordenManteniendoBloqueColores(g, 0);
 		for(u32 i = 0; i< NumeroDeVertices(g); i++)
-			printf("%u\n", g->orden[i]->nombre);
+			printf("ORDEN BLOQUE 0: %u\n", g->orden[i]->color);
 		printf("NotSoGreedy Inmediatamente despues de aplicar ReordenManteniendoBloqueColores con semilla 0 y NotSoGreedy con semilla 1: %u\n", NotSoGreedy(g,1));
-		ReordenManteniendoBloqueColores(g, 1);
+		// ReordenManteniendoBloqueColores(g, 1);
 		//for(u32 i = 0; i< NumeroDeVertices(g); i++)
 			//printf("%u\n", g->orden[i]->nombre);
-		ReordenManteniendoBloqueColores(g, 2);
-		//for(u32 i = 0; i< NumeroDeVertices(g); i++)
-			//printf("%u\n", g->orden[i]->nombre);
+    for (u32 j = 0; j<5; j++) {
+  		ReordenManteniendoBloqueColores(g, 2);
+      printf("ORDEN BLOQUE 2 SEMILLA %u: \n", j);
+  		for(u32 i = 0; i< NumeroDeVertices(g); i++)
+  			printf("%u |", g->orden[i]->color);
+      printf("\n");
+    }
 
+
+    for (u32 j = 0; j<5; j++) {
+      ReordenManteniendoBloqueColores(g, 2);
+      printf("ORDEN BLOQUE 2 SEMILLA %u: \n", j);
+      for(u32 i = 0; i< NumeroDeVertices(g); i++)
+        printf("%u |", g->orden[i]->color);
+      printf("\n");
+    }
+    // ReordenManteniendoBloqueColores(g, 3);
+    // printf("ORDEN BLOQUE 2 SEMILLA 3:\n");
+		// for(u32 i = 0; i< NumeroDeVertices(g); i++)
+		// 	printf("%u |", g->orden[i]->color);
+    //
+    // printf("\n" );
+    //
+    // ReordenManteniendoBloqueColores(g, 2);
+    // printf("ORDEN BLOQUE 2 SEMILLA 2: \n");
+		// for(u32 i = 0; i< NumeroDeVertices(g); i++)
+		// 	printf("%u |", g->orden[i]->color);
+    //
+    // printf("\n" );
+    //
+    // ReordenManteniendoBloqueColores(g, 3);
+    // printf("ORDEN BLOQUE 2 SEMILLA 3:\n");
+		// for(u32 i = 0; i< NumeroDeVertices(g); i++)
+		// 	printf("%u |", g->orden[i]->color);
+    //
+    // printf("\n" );
 		/* --------------------------------------*/
 
 		tiempo_final = clock();

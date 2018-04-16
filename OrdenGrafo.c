@@ -96,10 +96,30 @@ void ReordenManteniendoBloqueColores(Grafo G,u32 x) {
     if (x == 0)
         qsort(G->orden, G->nro_vertices, sizeof(PVertice), cmpfunccolor);
     else if (x == 1)
-        printf("ReordenManteniendoBloqueColores con 1 - NO LO TENEMOS \n");
-    else if (x > 1)
+      printf("nada\n" );
+      // for (u32 i = nro_colores; i>0; i--) {
+      //   color_usado = elQueMasAparece(mi_orden, size, i);
+      //   cantidad = NumeroDeVerticesDeColor(mi_orden, size, color_usado);
+      //   printf("color_usado: %u cantidad: %u size: %u mi_orden: %u\n", color_usado, cantidad, size, mi_orden);
+      //   // DO THE SORTING
+      //   for (u32 j = 0; j < size-1 ;j++) {
+      //     for (u32 x = j+1; x < size; x++) {
+      //       if (G->orden[x]->color == color_usado) {
+      //         n = x;
+      //       }
+      //     }
+      //     temp = G->orden[j];
+      //     G->orden[j] = G->orden[n];
+      //     G->orden[n] = temp;
+      //   }
+      //   mi_orden = mi_orden + (cantidad - 1);
+      //   size = size - cantidad;
+      // }
+    else if (x > 1) {
 			for(u32 i = 0; i < G->nro_vertices; i++){
 				G->vertices[i].x_aleatorio= x;
 			}
-			qsort(G->orden, G->nro_vertices, sizeof(PVertice), cmpfuncaleat);}
+			qsort(G->orden, G->nro_vertices, sizeof(PVertice), cmpfuncaleat);
+    }
+}
 /* -----------------------------------------------------------------------------*/
