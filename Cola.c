@@ -2,7 +2,7 @@
 ---------------------- PROYECTO DE MATEMATICA DISCRETA 2018 ------------------------
 ------------------------------------------------------------------------------------
     INTEGRANTES: Lucas Astrada - astradalucasezequiel@gmail.com
-                 Jenaro Calviño - jen.calvineo@gmail.com 
+                 Jenaro Calviño - jen.calvineo@gmail.com
                  Francisco Semino - fseminobellville@gmail.com
 -------------------------------------------------------------------------------- */
 #include "TheOutsider.h"
@@ -13,17 +13,15 @@ void DestruirQueue(Queue q) {
 }
 
 void Enqueue(Queue q, PVertice v) {
-    // Increment tail index
     q->tail++;
-    // Add the item to the Queue
     q->theQueue[q->tail] = v;
 	}
 
 PVertice Dequeue(Queue q) {
     PVertice v;
     q->head++;
-    v = q->theQueue[q->head]; // Get character to return
-    return v;           // Return popped character
+    v = q->theQueue[q->head];
+    return v;
 }
 
 u32 isEmpty(Queue q) {

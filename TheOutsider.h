@@ -18,7 +18,7 @@
 /* Definiciniones */
 
 typedef unsigned int u32; /* Definición de tipo u32 */
-typedef struct _Vertice_t *PVertice; 
+typedef struct _Vertice_t *PVertice;
 typedef struct _Grafo_t *Grafo;
 
 /* Definición de Estructura Vertice */
@@ -26,7 +26,6 @@ struct _Vertice_t {
     u32 nombre; /* Nombre real del vértice */
     u32 grado; /* Grado del vértice */
     u32 color; /* Color del vértice  */
-    //u32 cantidad_veces_color; /* Cantidad de veces que 'color' aparece dentro del coloreo */
     u32 index; /* Indice */
 		u32 mem_vecinos;
 		u32 tag;
@@ -42,9 +41,8 @@ struct _Grafo_t {
     u32 nro_lados; /* Cantidad de lados del Grafo */
     u32 nro_colores; /* Cantidad de colores usados para colorear el Grafo */
     PVertice vertices; /* Arreglo de Vértices del Grafo */
-		bool *facil_busqueda; 
+		bool *facil_busqueda;
     PVertice *orden; /* Arreglo indicador del orden de los vértices del Grafo*/
-    //PVertice *orden_natural;
 };
 
 /* Tipo Abstracto de Datos QUEUE, utilizado para el algoritmo Bipartito tal como se vio en clase */
@@ -107,14 +105,14 @@ u32 NumeroDeVerticesDeColor(Grafo G, u32 i); /* Devuelve la cantidad de veces qu
 void OrdenNatural(Grafo G); /* Ordena los vértices en orden creciente de sus “nombres” reales */
 void OrdenWelshPowell(Grafo G); /* Ordena los vértices de G de acuerdo con el orden Welsh-Powell */
 void AleatorizarVertices(Grafo G,u32 semilla); /* Esta función ordena pseudoaleatoriamente los vértices de G, usando alguna función pseudoaleatoria que dependa determinísticamente de semilla. */
-void ReordenManteniendoBloqueColores(Grafo G,u32 x); 
+void ReordenManteniendoBloqueColores(Grafo G,u32 x);
 /*ReordenManteniendoBloqueColores
 
 • Si x=0, entonces j1=r,j2=r−1,...,jr−1=2,jr=1.
 
 • Si x=1, entonces j1,j2,...son tales que|VCj1|≤|VCj2|≤...≤|VCjr|
 
-• Si x>1, entonces se usa alguna función de pseudoaleatoriedad que dependa determinísticamente de x 
+• Si x>1, entonces se usa alguna función de pseudoaleatoriedad que dependa determinísticamente de x
 para generar un orden aleatorio de los números {1, 2, ..., r}, obteniendo un orden j1, j2, ..., jr.*/
 /*----------------------------------------------------------------------------------------------------*/
 

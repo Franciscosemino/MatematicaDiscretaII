@@ -2,7 +2,7 @@
 ---------------------- PROYECTO DE MATEMATICA DISCRETA 2018 ------------------------
 ------------------------------------------------------------------------------------
     INTEGRANTES: Lucas Astrada - astradalucasezequiel@gmail.com
-                 Jenaro Calviño - jen.calvineo@gmail.com 
+                 Jenaro Calviño - jen.calvineo@gmail.com
                  Francisco Semino - fseminobellville@gmail.com
 -------------------------------------------------------------------------------- */
 #include "TheOutsider.h"
@@ -45,11 +45,6 @@ Grafo ConstruccionDelGrafo(){
 						NuevoVecino(vert_input_v,vert_input_u);//nuevo vecino de u y v
 				}
 		}
-		/*
-		grafo->orden = &grafo->vertices;
-		for (u32 i = 0; i < grafo->nro_vertices; i++)
-			printf("%u\n", grafo->orden[i]->nombre);
-			*/
 		return grafo;
 }
 
@@ -83,7 +78,7 @@ sucesivamente*/
 		g->vertices[i_fbusqueda].nombre = v_nombre;
 		g->vertices[i_fbusqueda].grado = 0;
 		g->vertices[i_fbusqueda].color = i_fbusqueda;
-		g->vertices[i_fbusqueda].cant_de_colores = 0; 
+		g->vertices[i_fbusqueda].cant_de_colores = 0;
 		g->vertices[i_fbusqueda].index = i_fbusqueda;
 		g->vertices[i_fbusqueda].mem_vecinos = 3;
 		g->vertices[i_fbusqueda].tag = i_fbusqueda;
@@ -123,6 +118,5 @@ void DestruccionDelGrafo(Grafo g){
 			free(g->vertices[i].vecinos);
 	free(g->vertices);
 	free(g->orden);
-	//free(g->orden_natural);
 	free(g);
 }

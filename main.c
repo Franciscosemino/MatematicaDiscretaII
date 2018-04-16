@@ -14,7 +14,6 @@ int main(){
 		tiempo_inicio = clock();
 		Grafo g = ConstruccionDelGrafo();
 
-/*
 		printf("cant vertices %u\n",NumeroDeVertices(g) );
 		printf("cant lados %u\n", NumeroDeLados(g));
 		printf("cant colores %u\n", NumeroDeColores(g));
@@ -25,25 +24,16 @@ int main(){
 		printf("nombre del vecino 0 del vertice 1: %u\n",NombreJotaesimoVecino(g,1,0) );
 		printf("Es bipartito: %u\n",Bipartito(g));
 		printf("cant colores %u\n", NumeroDeColores(g));
-		*/
-		/*
+
+
 		ReordenManteniendoBloqueColores(g, 1);
-		for(u32 i = 0; i< NumeroDeVertices(g); i++)
-			printf("ORDEN BLOQUE 0: %u\n", g->orden[i]->color);
 		printf("NotSoGreedy Inmediatamente despues de aplicar ReordenManteniendoBloqueColores con semilla 0 y NotSoGreedy con semilla 1: %u\n", NotSoGreedy(g,1));
-	
-	//	printf("Not So Greedy con semillar 1 : %u\n", NotSoGreedy(g,1));
-		for (u32 i =0; i<NumeroDeVertices(g); i++) {
-			printf("El vertice %u tiene nombre %u, color %u y ese color aparece %u veces\n", i,
-			g->vertices[i].nombre, g->vertices[i].color, g->vertices[i].cantidad_veces_color);
-		}
-		*/
 		printf("Not So Greedy con semilla 1 : %u\n", NotSoGreedy(g,1));
 		ReordenManteniendoBloqueColores(g,1);
 		for(u32 i = 0; i< NumeroDeVertices(g); i++)
       	printf("Nombre: %u, Grado: %u, Color: %u, Cant Apariciones %u\n", g->orden[i]->nombre, g->orden[i]->grado,g->orden[i]->color, g->orden[i]->cant_de_colores);
-		//for(u32 i= 0; i<10;i++) // 10 Cortidas de NotSoGreedy
-			//printf("cantida de colores NotSoGreedy: %u\n", NotSoGreedy(g,i));
+		for(u32 i= 0; i<10;i++) // 10 Cortidas de NotSoGreedy
+			printf("cantida de colores NotSoGreedy: %u\n", NotSoGreedy(g,i));
 
 /* ------------------------------- CUESTIONES DE ORDEN -------------------------------*/
 
