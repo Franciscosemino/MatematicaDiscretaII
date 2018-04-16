@@ -22,6 +22,9 @@ u32 ColorJotaesimoVecino(Grafo G, u32 i,u32 j){
 u32 NombreJotaesimoVecino(Grafo G, u32 i,u32 j){
 	return G->vertices[i].vecinos[j]->nombre;
 }
+u32 GradoJotaesimoVecino (Grago G, u32 i, u32 j) {
+  return G->vertices[u].vecinos[j]->grado;
+}
 u32 NumeroDeVerticesDeColor(Grafo G, u32 i) {
   u32 count = 0;
   for (u32 j = 0; j < G->nro_vertices; j++) {
