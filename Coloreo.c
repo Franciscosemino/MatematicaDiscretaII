@@ -103,7 +103,6 @@ int Bipartito (Grafo G) {
 			if(!G->vertices[i].visitado){
 				DFS(G,i);
 				componentes_conexas++;
-				printf("componentes_conexas : %u\n", componentes_conexas );
 			}
 		}
     while (vertices_coloreados < n) {
