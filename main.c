@@ -22,10 +22,9 @@ int main(){
 		printf("color del vertice 1: %u\n",ColorDelVertice(g,1) );
 		printf("color del vecino 0 del vertice 1: %u\n",ColorJotaesimoVecino(g,1,0) );
 		printf("nombre del vecino 0 del vertice 1: %u\n",NombreJotaesimoVecino(g,1,0) );
-		printf("Es bipartito: %u\n",Bipartito(g));
+		printf("Es bipartito: %i\n",Bipartito(g));
 		printf("cant colores %u\n", NumeroDeColores(g));
-
-
+/*
 		ReordenManteniendoBloqueColores(g, 1);
 		printf("NotSoGreedy Inmediatamente despues de aplicar ReordenManteniendoBloqueColores con semilla 0 y NotSoGreedy con semilla 1: %u\n", NotSoGreedy(g,1));
 		printf("Not So Greedy con semilla 1 : %u\n", NotSoGreedy(g,1));
@@ -34,7 +33,7 @@ int main(){
       	printf("Nombre: %u, Grado: %u, Color: %u, Cant Apariciones %u\n", g->orden[i]->nombre, g->orden[i]->grado,g->orden[i]->color, g->orden[i]->cant_de_colores);
 		for(u32 i= 0; i<10;i++) // 10 Cortidas de NotSoGreedy
 			printf("cantida de colores NotSoGreedy: %u\n", NotSoGreedy(g,i));
-
+*/
 /* ------------------------------- CUESTIONES DE ORDEN -------------------------------*/
 
 /*--------------------------------------------------------------- */

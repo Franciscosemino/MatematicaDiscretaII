@@ -29,6 +29,7 @@ struct _Vertice_t {
     u32 index; /* Indice */
 		u32 mem_vecinos;
 		u32 tag;
+		bool visitado;/*variable para saber el numero de componentes conexas*/
 		u32 x_aleatorio;/* u32 para uso exclusivo en funcion orden aleatorio */
 		u32 aleatorio; /* u32 para uso exclusivo en funcion orden aleatorio */
     u32 cant_de_colores; //uso exclusivo para orden bloque  == 1
@@ -121,6 +122,7 @@ para generar un orden aleatorio de los números {1, 2, ..., r}, obteniendo un or
 /* Funciones de Coloreo */
 /*----------------------------------------------------------------------------------------------------*/
 u32 mi_rand(u32 semilla);/*Funcion pseudoaleatoria*/
+void DFS(Grafo G, u32 inicio);/* Funcion DFS para saber cantidad componentes_conexas */
 u32 NotSoGreedy(Grafo G,u32 semilla); /* Corre la variación de greedy en G con el orden interno que debe estar guardado de alguna forma dentro de G. Devuelve el numero de colores que se obtiene. */
 int Bipartito(Grafo G); /* Si k es el número de componentes conexas de G, devuelve k si G es bipartito, y −k si no */
 /*----------------------------------------------------------------------------------------------------*/

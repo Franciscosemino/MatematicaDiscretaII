@@ -17,6 +17,16 @@ u32 mi_rand(u32 semilla) {
    return seed =  (seed >> 1) | (bit << 31);
 }
 
+void DFS(Grafo G, u32 inicio){
+	G->vertices[inicio].visitado=true;
+	for(u32 i = 0;i<G->vertices[inicio].grado;i++){
+		if(!G->vertices[inicio].vecinos[i]->visitado){
+			DFS(G,G->vertices[inicio].vecinos[i]->index);
+		}
+	}
+
+}
+
 u32 NotSoGreedy(Grafo G, u32 semilla) {
 		u32 seed = semilla;
 		u32 n = NumeroDeVertices(G);
@@ -84,8 +94,18 @@ int Bipartito (Grafo G) {
     u32 n = G->nro_vertices;
     for(u32 i = 0; i < n; i++) {
         G->vertices[i].color = 0;
+				G->vertices[i].visitado = false;
     }
+		u32 componentes_conexas = 1;
     u32 vertices_coloreados = 0;
+		DFS(G,0);
+		for(u32 i = 0; i < n ; i++){
+			if(!G->vertices[i].visitado){
+				DFS(G,i);
+				componentes_conexas++;
+				printf("componentes_conexas : %u\n", componentes_conexas );
+			}
+		}
     while (vertices_coloreados < n) {
         x = &G->vertices[indice];
         if(x->color == 0) {
@@ -106,7 +126,8 @@ int Bipartito (Grafo G) {
                     }
                     else if (vertice->color == vertice->vecinos[i]->color) {
                         DestruirQueue(q);
-                        return 0;
+												NotSoGreedy(G,0);
+                        return -componentes_conexas;
                     }
                 }
             }
@@ -118,10 +139,12 @@ int Bipartito (Grafo G) {
     for(u32 i = 0; i < n; i++) {
         vertice = &G->vertices[i];
         for(u32 j = 0; j < vertice->grado; j++) {
-            if(vertice->color == vertice->vecinos[j]->color)
-                return -1;
+            if(vertice->color == vertice->vecinos[j]->color){
+								NotSoGreedy(G,0);
+                return -componentes_conexas;
+						}
         }
     }
 		G->nro_colores=2;
-    return 1;
+    return componentes_conexas;
 }
