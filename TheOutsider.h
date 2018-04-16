@@ -15,36 +15,39 @@
 
 #define BUFFER_SIZE 1024
 
-//ESTRUCTURAS DE Grafo y Vertice
+/* Definiciniones */
 
-typedef unsigned int u32;
-typedef struct _Vertice_t *PVertice;
+typedef unsigned int u32; /* Definición de tipo u32 */
+typedef struct _Vertice_t *PVertice; 
 typedef struct _Grafo_t *Grafo;
 
-
+/* Definición de Estructura Vertice */
 struct _Vertice_t {
-    u32 nombre;
-    u32 grado;
-    u32 color;
-    u32 index;
+    u32 nombre; /* Nombre real del vértice */
+    u32 grado; /* Grado del vértice */
+    u32 color; /* Color del vértice  */
+    //u32 cantidad_veces_color; /* Cantidad de veces que 'color' aparece dentro del coloreo */
+    u32 index; /* Indice */
 		u32 mem_vecinos;
 		u32 tag;
-		u32 x_aleatorio;//u32 para uso exclusivo en funcion orden aleatorio
-		u32 aleatorio;//u32 para uso exclusivo en funcion orden aleatorio
-    PVertice *vecinos;
+		u32 x_aleatorio;/* u32 para uso exclusivo en funcion orden aleatorio */
+		u32 aleatorio; /* u32 para uso exclusivo en funcion orden aleatorio */
+    u32 cant_de_colores; //uso exclusivo para orden bloque  == 1
+    PVertice *vecinos; /* Vecinos del vértice */
 };
 
+/* Definición de Estructura Grafo */
 struct _Grafo_t {
-    u32 nro_vertices;
-    u32 nro_lados;
-    u32 nro_colores;
-    PVertice vertices;
-		bool *facil_busqueda;
-    PVertice *orden;
+    u32 nro_vertices; /* Cantidad de vértices del Grafo */
+    u32 nro_lados; /* Cantidad de lados del Grafo */
+    u32 nro_colores; /* Cantidad de colores usados para colorear el Grafo */
+    PVertice vertices; /* Arreglo de Vértices del Grafo */
+		bool *facil_busqueda; 
+    PVertice *orden; /* Arreglo indicador del orden de los vértices del Grafo*/
     //PVertice *orden_natural;
 };
 
-//ESTRUCTURAS DE COLA
+/* Tipo Abstracto de Datos QUEUE, utilizado para el algoritmo Bipartito tal como se vio en clase */
 
 typedef struct _Queue_t *Queue;
 
@@ -55,9 +58,9 @@ struct _Queue_t {
 };
 
 
-//FUNCIONES
+/* FUNCIONES */
 
-// Funciones de Cola
+/* Funciones deL TAD Cola */
 /*----------------------------------------------------------------------------------------------------*/
 void DestruirQueue(Queue q);
 void Enqueue(Queue q, PVertice v);
@@ -66,21 +69,21 @@ u32 isEmpty(Queue q);
 /*----------------------------------------------------------------------------------------------------*/
 
 
-// Funciones Auxiliares de Carga del Grafo
+/* Funciones Auxiliares de Carga del Grafo */
 /*----------------------------------------------------------------------------------------------------*/
 PVertice BuscoOAgregoVert(Grafo g,u32 v_nombre);
 void NuevoVecino(PVertice vert_u, PVertice vert_v);
 /*----------------------------------------------------------------------------------------------------*/
 
 
-// Funciones de Carga y Destrucción del Grafo
+/* Funciones de Carga y Destrucción del Grafo */
 /*----------------------------------------------------------------------------------------------------*/
 Grafo ConstruccionDelGrafo(); /* Alloca memoria para un Nuevo Grado leido por entrada estándar */
 void DestruccionDelGrafo(Grafo G); /* Destruye G y libera la memoria alocada */
 /*----------------------------------------------------------------------------------------------------*/
 
 
-// Funciones de Información del Grafo
+/* Funciones de Información del Grafo */
 /*----------------------------------------------------------------------------------------------------*/
 u32 NumeroDeVertices(Grafo G); /* Retorna el número de Vértices del grafo G */
 u32 NumeroDeLados(Grafo G); /* Retorna el número de lados del grafo G */
@@ -88,26 +91,35 @@ u32 NumeroDeColores(Grafo G); /* Retorna el número de colores del grafo G */
 /*----------------------------------------------------------------------------------------------------*/
 
 
-// Funciones de Información del Vértice
+/* Funciones de Información del Vértice */
 /*----------------------------------------------------------------------------------------------------*/
 u32 NombreDelVertice(Grafo G, u32 i); /* Devuelve el nombre real del vértice número i en el orden guardado en ese momento en G */
 u32 ColorDelVertice(Grafo G, u32 i); /* Devuelve el color con el que está coloreado el vértice número i en el orden guardado en ese momento en G */
 u32 GradoDelVertice(Grafo G, u32 i); /* Devuelve el grado del vértice número i en el orden guardado en ese momento en G */
 u32 ColorJotaesimoVecino(Grafo G, u32 i,u32 j); /* Devuelve el color del vecino numero j del vértice número i en el orden guardado en ese momento en G */
-u32 NombreJotaesimoVecino(Grafo G, u32 i,u32 j); /*Devuelve el nombre del vecino numero j del vértice nu ́mero i en el orden guardado en ese momento en G */
+u32 NombreJotaesimoVecino(Grafo G, u32 i,u32 j); /*Devuelve el nombre del vecino numero j del vértice número i en el orden guardado en ese momento en G */
+u32 NumeroDeVerticesDeColor(Grafo G, u32 i); /* Devuelve la cantidad de veces que un color fue usado*/
 /*----------------------------------------------------------------------------------------------------*/
 
 
-// Funcionesd de Ordenación
+/* Funciones de Ordenación */
 /*----------------------------------------------------------------------------------------------------*/
 void OrdenNatural(Grafo G); /* Ordena los vértices en orden creciente de sus “nombres” reales */
 void OrdenWelshPowell(Grafo G); /* Ordena los vértices de G de acuerdo con el orden Welsh-Powell */
 void AleatorizarVertices(Grafo G,u32 semilla); /* Esta función ordena pseudoaleatoriamente los vértices de G, usando alguna función pseudoaleatoria que dependa determinísticamente de semilla. */
-void ReordenManteniendoBloqueColores(Grafo G,u32 x); /* */
+void ReordenManteniendoBloqueColores(Grafo G,u32 x); 
+/*ReordenManteniendoBloqueColores
+
+• Si x=0, entonces j1=r,j2=r−1,...,jr−1=2,jr=1.
+
+• Si x=1, entonces j1,j2,...son tales que|VCj1|≤|VCj2|≤...≤|VCjr|
+
+• Si x>1, entonces se usa alguna función de pseudoaleatoriedad que dependa determinísticamente de x 
+para generar un orden aleatorio de los números {1, 2, ..., r}, obteniendo un orden j1, j2, ..., jr.*/
 /*----------------------------------------------------------------------------------------------------*/
 
 
-// Funciones de Coloreo
+/* Funciones de Coloreo */
 /*----------------------------------------------------------------------------------------------------*/
 u32 mi_rand(u32 semilla);/*Funcion pseudoaleatoria*/
 u32 NotSoGreedy(Grafo G,u32 semilla); /* Corre la variación de greedy que se indica mas abajo en G con el orden interno que debe estar guardado de alguna forma dentro de G. Devuelve el numero de colores que se obtiene. */

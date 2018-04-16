@@ -83,6 +83,7 @@ sucesivamente*/
 		g->vertices[i_fbusqueda].nombre = v_nombre;
 		g->vertices[i_fbusqueda].grado = 0;
 		g->vertices[i_fbusqueda].color = i_fbusqueda;
+		g->vertices[i_fbusqueda].cant_de_colores = 0; 
 		g->vertices[i_fbusqueda].index = i_fbusqueda;
 		g->vertices[i_fbusqueda].mem_vecinos = 3;
 		g->vertices[i_fbusqueda].tag = i_fbusqueda;
@@ -90,10 +91,6 @@ sucesivamente*/
 		g->facil_busqueda[i_fbusqueda] = true;
 		g->orden[i_fbusqueda] = &g->vertices[i_fbusqueda];
 		vert_return = &g->vertices[i_fbusqueda];
-
-
-		// Llenado de orden
-		//g->orden[i_fbusqueda] = vert_return;
 
 		return vert_return;
 

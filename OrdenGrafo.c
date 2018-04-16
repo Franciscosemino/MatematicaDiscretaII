@@ -79,8 +79,23 @@ void AleatorizarVertices(Grafo G,u32 semilla) {
 int cmpfunccolor (const void * a, const void * b) {
 	PVertice vertice_1 = *(PVertice*)a;
 	PVertice vertice_2 = *(PVertice*)b;
-  int resultado = ( vertice_2->color )-(vertice_1->color);
+  int resultado = (vertice_2->color )-(vertice_1->color);
 	return resultado;
+}
+
+/*
+int cmpfuncApariciones (const void * a, const void * b){
+  PVertice vertice_1 = *(PVertice*)a;
+  PVertice vertice_2 = *(PVertice*)b;
+  int resultado = (vertice_2->cantidad_veces_color)-(vertice_1->cantidad_veces_color);
+
+}
+*/
+int cmpfunccantcolor (const void * a, const void * b) {
+  PVertice vertice_1 = *(PVertice*)a;
+  PVertice vertice_2 = *(PVertice*)b;
+  int resultado = (vertice_1->cant_de_colores)>(vertice_2->cant_de_colores);
+  return resultado;
 }
 
 int cmpfuncaleat(const void * a, const void * b){
@@ -93,10 +108,19 @@ int cmpfuncaleat(const void * a, const void * b){
 
 }
 void ReordenManteniendoBloqueColores(Grafo G,u32 x) {
-    if (x == 0)
+    if (x == 0) {
         qsort(G->orden, G->nro_vertices, sizeof(PVertice), cmpfunccolor);
-    else if (x == 1)
-      printf("nada\n" );
+    } else if (x == 1) {
+      //printf("nada\n" );
+
+      for (u32 i = 0; i<G->nro_vertices; i++) {
+        G->orden[i]->cant_de_colores = NumeroDeVerticesDeColor(G, G->orden[i]->color);
+        //printf("G->orden[i]->color: %u G->orden[i]->cant_de_colores:%u\n", G->orden[i]->color, G->orden[i]->cant_de_colores);
+      }
+      printf("\n");
+      qsort(G->orden, G->nro_vertices, sizeof(PVertice), cmpfunccantcolor);
+
+
       // for (u32 i = nro_colores; i>0; i--) {
       //   color_usado = elQueMasAparece(mi_orden, size, i);
       //   cantidad = NumeroDeVerticesDeColor(mi_orden, size, color_usado);
@@ -115,7 +139,9 @@ void ReordenManteniendoBloqueColores(Grafo G,u32 x) {
       //   mi_orden = mi_orden + (cantidad - 1);
       //   size = size - cantidad;
       // }
-    else if (x > 1) {
+
+
+    } else if (x > 1) {
 			for(u32 i = 0; i < G->nro_vertices; i++){
 				G->vertices[i].x_aleatorio= x;
 			}

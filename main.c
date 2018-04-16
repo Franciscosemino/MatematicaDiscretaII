@@ -14,7 +14,7 @@ int main(){
 		tiempo_inicio = clock();
 		Grafo g = ConstruccionDelGrafo();
 
-
+/*
 		printf("cant vertices %u\n",NumeroDeVertices(g) );
 		printf("cant lados %u\n", NumeroDeLados(g));
 		printf("cant colores %u\n", NumeroDeColores(g));
@@ -25,32 +25,51 @@ int main(){
 		printf("nombre del vecino 0 del vertice 1: %u\n",NombreJotaesimoVecino(g,1,0) );
 		printf("Es bipartito: %u\n",Bipartito(g));
 		printf("cant colores %u\n", NumeroDeColores(g));
-		for(u32 i= 0; i<10;i++) // 10 Cortidas de NotSoGreedy
-			printf("cantida de colores NotSoGreedy: %u\n", NotSoGreedy(g,i));
+		*/
+		/*
+		ReordenManteniendoBloqueColores(g, 1);
+		for(u32 i = 0; i< NumeroDeVertices(g); i++)
+			printf("ORDEN BLOQUE 0: %u\n", g->orden[i]->color);
+		printf("NotSoGreedy Inmediatamente despues de aplicar ReordenManteniendoBloqueColores con semilla 0 y NotSoGreedy con semilla 1: %u\n", NotSoGreedy(g,1));
+	
+	//	printf("Not So Greedy con semillar 1 : %u\n", NotSoGreedy(g,1));
+		for (u32 i =0; i<NumeroDeVertices(g); i++) {
+			printf("El vertice %u tiene nombre %u, color %u y ese color aparece %u veces\n", i,
+			g->vertices[i].nombre, g->vertices[i].color, g->vertices[i].cantidad_veces_color);
+		}
+		*/
+		printf("Not So Greedy con semilla 1 : %u\n", NotSoGreedy(g,1));
+		ReordenManteniendoBloqueColores(g,1);
+		for(u32 i = 0; i< NumeroDeVertices(g); i++)
+      	printf("Nombre: %u Grado: %u Color: %u\n", g->orden[i]->nombre, g->orden[i]->grado,g->orden[i]->color);
+		//for(u32 i= 0; i<10;i++) // 10 Cortidas de NotSoGreedy
+			//printf("cantida de colores NotSoGreedy: %u\n", NotSoGreedy(g,i));
 
 /* ------------------------------- CUESTIONES DE ORDEN -------------------------------*/
 
 /*--------------------------------------------------------------- */
+		/*
 		printf("Sin aplicar Orden\n");
 		for(u32 i = 0 ; i< NumeroDeVertices(g);i++)
 			printf("%u\n", g->orden[i]->nombre);
 		printf("NotSoGreedy SIN ORDENAR con semilla 1: %u\n", NotSoGreedy(g,1));
-
+		*/
 /*--------------------------------------------------------------- */
-
+		/*
 		OrdenNatural(g);
 		printf("Orden Natural\n");
 		for(u32 i = 0 ; i< NumeroDeVertices(g);i++)
 			printf("%u\n", g->orden[i]->nombre);
 		printf("NotSoGreedy Inmediatamente despues de aplicar Orden Natural con semilla 1 : %u\n", NotSoGreedy(g,1));
+		*/
 /*--------------------------------------------------------------- */
-
+		/*
 		OrdenWelshPowell(g);
 		printf("Orden Orden Wesh Powell\n");
 		for(u32 i = 0 ; i< NumeroDeVertices(g);i++)
 			printf("Nombre: %u Grado: %u\n", g->orden[i]->nombre, g->orden[i]->grado);
 		printf("NotSoGreedy Inmediatamente despues de aplicar Wesh Powell con semilla 1 : %u\n", NotSoGreedy(g,1));
-
+		*/
 // /*--------------------------------------------------------------- */
 //
 // 		AleatorizarVertices(g, 1);
@@ -59,14 +78,16 @@ int main(){
 // 			printf("%u\n", g->orden[i]->nombre);
 // 		printf("NotSoGreedy Inmediatamente despues de aplicar Aleatorizar Vertices con semilla 1 : %u\n", NotSoGreedy(g,1));
 // /*--------------------------------------------------------------- */
-
+		/*
 		ReordenManteniendoBloqueColores(g, 0);
 		for(u32 i = 0; i< NumeroDeVertices(g); i++)
 			printf("ORDEN BLOQUE 0: %u\n", g->orden[i]->color);
 		printf("NotSoGreedy Inmediatamente despues de aplicar ReordenManteniendoBloqueColores con semilla 0 y NotSoGreedy con semilla 1: %u\n", NotSoGreedy(g,1));
-		// ReordenManteniendoBloqueColores(g, 1);
-		//for(u32 i = 0; i< NumeroDeVertices(g); i++)
-			//printf("%u\n", g->orden[i]->nombre);
+		*/
+		ReordenManteniendoBloqueColores(g, 1);
+		for(u32 i = 0; i< NumeroDeVertices(g); i++)
+			printf("%u\n", g->orden[i]->nombre);
+		/*
     for (u32 j = 0; j<5; j++) {
   		ReordenManteniendoBloqueColores(g, 2);
       printf("ORDEN BLOQUE 2 SEMILLA %u: \n", j);
@@ -103,6 +124,7 @@ int main(){
 		// 	printf("%u |", g->orden[i]->color);
     //
     // printf("\n" );
+    */
 		/* --------------------------------------*/
 
 		tiempo_final = clock();
