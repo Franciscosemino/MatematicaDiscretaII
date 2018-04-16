@@ -121,6 +121,6 @@ para generar un orden aleatorio de los números {1, 2, ..., r}, obteniendo un or
 /* Funciones de Coloreo */
 /*----------------------------------------------------------------------------------------------------*/
 u32 mi_rand(u32 semilla);/*Funcion pseudoaleatoria*/
-u32 NotSoGreedy(Grafo G,u32 semilla); /* Corre la variación de greedy que se indica mas abajo en G con el orden interno que debe estar guardado de alguna forma dentro de G. Devuelve el numero de colores que se obtiene. */
+u32 NotSoGreedy(Grafo G,u32 semilla); /* Corre la variación de greedy en G con el orden interno que debe estar guardado de alguna forma dentro de G. Devuelve el numero de colores que se obtiene. */
 int Bipartito(Grafo G); /* Si k es el número de componentes conexas de G, devuelve k si G es bipartito, y −k si no */
 /*----------------------------------------------------------------------------------------------------*/
