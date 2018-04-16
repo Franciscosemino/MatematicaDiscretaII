@@ -96,7 +96,7 @@ u32 ColorDelVertice(Grafo G, u32 i); /* Devuelve el color con el que está color
 u32 GradoDelVertice(Grafo G, u32 i); /* Devuelve el grado del vértice número i en el orden guardado en ese momento en G */
 u32 ColorJotaesimoVecino(Grafo G, u32 i,u32 j); /* Devuelve el color del vecino numero j del vértice número i en el orden guardado en ese momento en G */
 u32 NombreJotaesimoVecino(Grafo G, u32 i,u32 j); /*Devuelve el nombre del vecino numero j del vértice número i en el orden guardado en ese momento en G */
-u32 GradoJotaesimoVecino (Grago G, u32 i, u32 j); /* Devuelve el grado del vecino numero j del vértice número i en el orden guardado en ese momento en G */
+u32 GradoJotaesimoVecino (Grafo G, u32 i, u32 j); /* Devuelve el grado del vecino numero j del vértice número i en el orden guardado en ese momento en G */
 u32 NumeroDeVerticesDeColor(Grafo G, u32 i); /* Devuelve la cantidad de veces que un color fue usado*/
 /*----------------------------------------------------------------------------------------------------*/
 
