@@ -13,7 +13,26 @@ int main(){
 		double segundos;
 		tiempo_inicio = clock();
 		Grafo g = ConstruccionDelGrafo();
+		printf("CARGUE EL GRAFO\n" );
+		OrdenNatural(g);
+		printf("ORDENE EL GRAFO\n" );
 
+
+		for(u32 i = 0; i< 1000; i++){
+			OrdenNatural(g);
+			u32 j = NotSoGreedy(g,i);
+			printf("NRO COLORES ORDEN NATURAL: %u\n",j );
+			ReordenManteniendoBloqueColores(g,2);
+			printf("NRO COLORES MANTENIENDO BLOQUES: %u\n",NotSoGreedy(g,i) );
+		}
+		int u = Bipartito(g);
+		printf("BIPARTITO = %i\n",u );
+/*		for (u32 i = 0 ; i< NumeroDeVertices(g);i++){
+			printf("Soy el Vertice %u y mi COLOR ES: %u\n",NombreDelVertice(g,i),ColorDelVertice(g,i) );
+		}*/
+
+
+/*
 		printf("cant vertices %u\n",NumeroDeVertices(g) );
 		printf("cant lados %u\n", NumeroDeLados(g));
 		printf("cant colores %u\n", NumeroDeColores(g));
@@ -23,7 +42,7 @@ int main(){
 		printf("color del vecino 0 del vertice 1: %u\n",ColorJotaesimoVecino(g,1,0) );
 		printf("nombre del vecino 0 del vertice 1: %u\n",NombreJotaesimoVecino(g,1,0) );
 		printf("Es bipartito: %i\n",Bipartito(g));
-		printf("cant colores %u\n", NumeroDeColores(g));
+		printf("cant colores %u\n", NumeroDeColores(g));*/
 /*
 		ReordenManteniendoBloqueColores(g, 1);
 		printf("NotSoGreedy Inmediatamente despues de aplicar ReordenManteniendoBloqueColores con semilla 0 y NotSoGreedy con semilla 1: %u\n", NotSoGreedy(g,1));
