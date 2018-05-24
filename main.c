@@ -7,6 +7,18 @@
 -------------------------------------------------------------------------------- */
 #include "TheOutsider.h"
 
+bool arrayIsSorted(PVertice *a, u32 n) {
+  if ((n == 1) || (n == 0))
+    return true;
+
+  if (a[n-1]->nombre < a[n-2]->nombre) {
+    printf("%u %u\n", a[n-1]->nombre, a[n-2]->nombre);
+    return false;
+  }
+
+  return arrayIsSorted(a, n-1);
+}
+
 int main(){
 		clock_t tiempo_inicio;
 		clock_t tiempo_final;
@@ -14,19 +26,17 @@ int main(){
 		tiempo_inicio = clock();
 		Grafo g = ConstruccionDelGrafo();
 		printf("CARGUE EL GRAFO\n" );
+
 		OrdenNatural(g);
-		printf("ORDENE EL GRAFO\n" );
+
+    bool b = arrayIsSorted(g->orden, g->nro_vertices);
+
+    printf("ESTA ORDENADO?\n");
+    if (b) printf("SI\n");
 
 
-		for(u32 i = 0; i< 1000; i++){
-			OrdenNatural(g);
-			u32 j = NotSoGreedy(g,i);
-			printf("NRO COLORES ORDEN NATURAL: %u\n",j );
-			ReordenManteniendoBloqueColores(g,2);
-			printf("NRO COLORES MANTENIENDO BLOQUES: %u\n",NotSoGreedy(g,i) );
-		}
-		int u = Bipartito(g);
-		printf("BIPARTITO = %i\n",u );
+
+
 /*		for (u32 i = 0 ; i< NumeroDeVertices(g);i++){
 			printf("Soy el Vertice %u y mi COLOR ES: %u\n",NombreDelVertice(g,i),ColorDelVertice(g,i) );
 		}*/

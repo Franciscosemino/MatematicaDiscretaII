@@ -7,11 +7,10 @@
 -------------------------------------------------------------------------------- */
 #include "TheOutsider.h"
 
-
 int cmpfunc (const void * a, const void * b) {
 	PVertice vertice_1 = *(PVertice*)a;
 	PVertice vertice_2 = *(PVertice*)b;
-  int resultado = ( vertice_1->nombre )-(vertice_2->nombre);
+  int resultado = (vertice_1->nombre > vertice_2->nombre) - (vertice_1->nombre < vertice_2->nombre);
 	return resultado;
 }
 
