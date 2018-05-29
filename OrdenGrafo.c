@@ -51,6 +51,14 @@ int cmpfuncaleat(const void * a, const void * b){
 	return resultado;
 
 }
+
+void AleatorizarVertices(Grafo G, u32 x) {
+  for(u32 i = 0; i < G->nro_vertices; i++){
+    G->vertices[i].x_aleatorio= x;
+  }
+  qsort(G->orden, G->nro_vertices, sizeof(PVertice), cmpfuncaleat);
+}
+
 void ReordenManteniendoBloqueColores(Grafo G,u32 x) {
     if (x == 0) {
         qsort(G->orden, G->nro_vertices, sizeof(PVertice), cmpfunccolor);
