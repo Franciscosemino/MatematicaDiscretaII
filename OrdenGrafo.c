@@ -47,7 +47,8 @@ int cmpfuncaleat(const void * a, const void * b){
 	PVertice vertice_2 = *(PVertice*)b;
 	vertice_1->aleatorio = mi_rand(vertice_1->color)-(vertice_1->x_aleatorio);
 	vertice_2->aleatorio = mi_rand(vertice_2->color)-(vertice_2->x_aleatorio);
-	int resultado = (vertice_1->aleatorio>vertice_2->aleatorio);
+	//int resultado = (vertice_1->aleatorio>vertice_2->aleatorio);
+  int resultado = (vertice_1->aleatorio > vertice_2->aleatorio) - (vertice_1->aleatorio < vertice_2->aleatorio);
 	return resultado;
 
 }
