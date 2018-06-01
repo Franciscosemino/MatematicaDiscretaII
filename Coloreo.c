@@ -66,7 +66,8 @@ u32 NotSoGreedy(Grafo G, u32 semilla) {
 				if(colores_in_ll==1){
 					G->orden[u]->color=ll->value;
 				}else{
-					u32 indice_crand = mi_rand(seed)%colores_in_ll;
+          seed = mi_rand(seed);
+					u32 indice_crand = seed%colores_in_ll;
 					u32 color_a_usar = randmon_color_ll(ll,indice_crand);
 					G->orden[u]->color=color_a_usar;
 				}

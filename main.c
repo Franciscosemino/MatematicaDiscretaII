@@ -19,9 +19,21 @@ bool arrayIsSorted(PVertice *a, u32 n) {
   return arrayIsSorted(a, n-1);
 }
 
+/* En nuestro caso sabemos que tienen el mismo largo */
+bool arrayIsEqual(PVertice *a, PVertice *b, u32 n) {
+  if ((n == 1) || (n == 0))
+    return true;
+
+  if (a[n]->nombre != b[n]->nombre)
+    return false;
+
+  return arrayIsEqual(a, b, n-1);
+}
+
 int main(){
 		clock_t tiempo_inicio;
 		clock_t tiempo_final;
+    PVertice *a;
 		double segundos;
 		tiempo_inicio = clock();
 		Grafo g = ConstruccionDelGrafo();
@@ -88,14 +100,28 @@ int main(){
 			printf("Nombre: %u Grado: %u\n", g->orden[i]->nombre, g->orden[i]->grado);
 		printf("NotSoGreedy Inmediatamente despues de aplicar Wesh Powell con semilla 1 : %u\n", NotSoGreedy(g,1));
 		*/
-// /*--------------------------------------------------------------- */
-//
-// 		AleatorizarVertices(g, 1);
-// 		printf("AleatorizarVertices\n");
-// 		for(u32 i = 0; i< NumeroDeVertices(g); i++)
-// 			printf("%u\n", g->orden[i]->nombre);
-// 		printf("NotSoGreedy Inmediatamente despues de aplicar Aleatorizar Vertices con semilla 1 : %u\n", NotSoGreedy(g,1));
-// /*--------------------------------------------------------------- */
+/*--------------------------------------------------------------- */
+
+		AleatorizarVertices(g, 1);
+		// printf("AleatorizarVertices\n");
+		// for(u32 i = 0; i< NumeroDeVertices(g); i++)
+		// 	printf("%u\n", g->orden[i]->nombre);
+
+    a = g->orden;
+		printf("NotSoGreedy Inmediatamente despues de aplicar Aleatorizar Vertices con semilla 1 : %u\n", NotSoGreedy(g,1));
+    AleatorizarVertices(g, 2);
+    // printf("AleatorizarVertices\n");
+    // for(u32 i = 0; i< NumeroDeVertices(g); i++)
+    //   printf("%u\n", g->orden[i]->nombre);
+    printf("NotSoGreedy Inmediatamente despues de aplicar Aleatorizar Vertices con semilla 1 : %u\n", NotSoGreedy(g,1));
+    AleatorizarVertices(g, 1);
+    // printf("AleatorizarVertices\n");
+    // for(u32 i = 0; i< NumeroDeVertices(g); i++)
+    //   printf("%u\n", g->orden[i]->nombre);
+
+    printf("son iguales los ordenes? -> %u\n" ,arrayIsEqual(a, g->orden, NumeroDeVertices(g)-1));
+    printf("NotSoGreedy Inmediatamente despues de aplicar Aleatorizar Vertices con semilla 1 : %u\n", NotSoGreedy(g,1));
+/*--------------------------------------------------------------- */
 		/*
 		ReordenManteniendoBloqueColores(g, 0);
 		for(u32 i = 0; i< NumeroDeVertices(g); i++)

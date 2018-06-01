@@ -45,16 +45,16 @@ int cmpfunccantcolor (const void * a, const void * b) {
 int cmpfuncaleat(const void * a, const void * b){
 	PVertice vertice_1 = *(PVertice*)a;
 	PVertice vertice_2 = *(PVertice*)b;
-	vertice_1->aleatorio = mi_rand(vertice_1->color)-(vertice_1->x_aleatorio);
-	vertice_2->aleatorio = mi_rand(vertice_2->color)-(vertice_2->x_aleatorio);
-  int resultado = (vertice_1->aleatorio > vertice_2->aleatorio) - (vertice_1->aleatorio < vertice_2->aleatorio);
+  int resultado = (vertice_1->x_aleatorio > vertice_2->x_aleatorio) - (vertice_1->x_aleatorio < vertice_2->x_aleatorio);
 	return resultado;
 
 }
 
 void AleatorizarVertices(Grafo G, u32 x) {
+  u32 seed = x;
   for(u32 i = 0; i < G->nro_vertices; i++){
-    G->vertices[i].x_aleatorio= x;
+    seed = mi_rand(seed);
+    G->vertices[i].x_aleatorio = seed;
   }
   qsort(G->orden, G->nro_vertices, sizeof(PVertice), cmpfuncaleat);
 }
@@ -69,8 +69,10 @@ void ReordenManteniendoBloqueColores(Grafo G,u32 x) {
       qsort(G->orden, G->nro_vertices, sizeof(PVertice), cmpfunccolor);
       qsort(G->orden, G->nro_vertices, sizeof(PVertice), cmpfunccantcolor);
     } else if (x > 1) {
+      u32 seed = x;
 			for(u32 i = 0; i < G->nro_vertices; i++){
-				G->vertices[i].x_aleatorio= x;
+        seed = mi_rand(seed);
+				G->vertices[i].x_aleatorio = seed;
 			}
 			qsort(G->orden, G->nro_vertices, sizeof(PVertice), cmpfuncaleat);
     }
