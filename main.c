@@ -33,7 +33,6 @@ bool arrayIsEqual(PVertice *a, PVertice *b, u32 n) {
 int main(){
 		clock_t tiempo_inicio;
 		clock_t tiempo_final;
-    PVertice *a;
 		double segundos;
 		tiempo_inicio = clock();
 		Grafo g = ConstruccionDelGrafo();
@@ -41,10 +40,10 @@ int main(){
 
 		OrdenNatural(g);
 
-    bool b = arrayIsSorted(g->orden, g->nro_vertices);
+    //bool b = arrayIsSorted(g->orden, g->nro_vertices);
 
-    printf("ESTA ORDENADO?\n");
-    if (b) printf("SI\n");
+  //  printf("ESTA ORDENADO?\n");
+    //if (b) printf("SI\n");
 
 
 
@@ -102,25 +101,10 @@ int main(){
 		*/
 /*--------------------------------------------------------------- */
 
-		AleatorizarVertices(g, 1);
-		// printf("AleatorizarVertices\n");
-		// for(u32 i = 0; i< NumeroDeVertices(g); i++)
-		// 	printf("%u\n", g->orden[i]->nombre);
-
-    a = g->orden;
-		printf("NotSoGreedy Inmediatamente despues de aplicar Aleatorizar Vertices con semilla 1 : %u\n", NotSoGreedy(g,1));
-    AleatorizarVertices(g, 2);
-    // printf("AleatorizarVertices\n");
-    // for(u32 i = 0; i< NumeroDeVertices(g); i++)
-    //   printf("%u\n", g->orden[i]->nombre);
-    printf("NotSoGreedy Inmediatamente despues de aplicar Aleatorizar Vertices con semilla 1 : %u\n", NotSoGreedy(g,1));
-    AleatorizarVertices(g, 1);
-    // printf("AleatorizarVertices\n");
-    // for(u32 i = 0; i< NumeroDeVertices(g); i++)
-    //   printf("%u\n", g->orden[i]->nombre);
-
-    printf("son iguales los ordenes? -> %u\n" ,arrayIsEqual(a, g->orden, NumeroDeVertices(g)-1));
-    printf("NotSoGreedy Inmediatamente despues de aplicar Aleatorizar Vertices con semilla 1 : %u\n", NotSoGreedy(g,1));
+for(u32 i=0; i<1000;i++){
+	u32 u=NotSoGreedy(g,i);
+	printf("COLOREO: %u\n",u );
+}
 /*--------------------------------------------------------------- */
 		/*
 		ReordenManteniendoBloqueColores(g, 0);

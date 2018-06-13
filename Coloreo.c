@@ -33,49 +33,39 @@ u32 NotSoGreedy(Grafo G, u32 semilla) {
 		u32 color;
     u32 color_maximo = 1;
     u32 grado = 0;
-		u32 colores_in_ll=0;
 		for(u32 i = 0 ; i<n;i++){
 			G->orden[i]->color=0;
 		}
 		G->orden[0]->color = 1;
+		bool colores_usados[n+1];
 		for(u32 u = 1; u < n; u++){
-			linklist ll = (linklist)calloc(1,sizeof(struct _Node_t));
 			grado = GradoDelVertice(G,u);
-			LLconsecutiva(ll,color_maximo);
-			colores_in_ll = color_maximo;
+			for(u32 i=0;i<color_maximo+1;i++){
+				colores_usados[i]=false;
+			}
       for (u32 i = 0; i < grado; i++) {
-				if(ll==NULL)
-					break;
         color = ColorJotaesimoVecino(G,u,i);
         if (color!=0) {
-					bool g=false;
-					if(ll->value==color){
-						linklist tmp = ll;
-						ll=ll->next;
-						free(tmp);
-						g=true;
-					}else{
-          	g = FindAndRemove(ll,color);
-					}
-					if(g){
-						colores_in_ll--;
-					}
-        }
-      }
-			if(colores_in_ll!=0){
-				if(colores_in_ll==1){
-					G->orden[u]->color=ll->value;
-				}else{
-          seed = mi_rand(seed);
-					u32 indice_crand = seed%colores_in_ll;
-					u32 color_a_usar = randmon_color_ll(ll,indice_crand);
-					G->orden[u]->color=color_a_usar;
+					colores_usados[color]=true;
 				}
-				DestroyLL(ll);
-				ll = NULL;
-			}else{
+      }
+			u32 colores_disponibles[color_maximo];
+			u32 indice_disponibles=0;
+			for(u32 i=1;i<color_maximo+1;i++){
+				if(!colores_usados[i]){
+					colores_disponibles[indice_disponibles]=i;
+					indice_disponibles++;
+				}
+			}
+			if(indice_disponibles==1){
+				G->orden[u]->color=colores_disponibles[0];
+			}else if(indice_disponibles==0){
 				color_maximo++;
 				G->orden[u]->color=color_maximo;
+			}else{
+				seed = mi_rand(seed);
+				u32 indice_crand = seed%indice_disponibles;
+				G->orden[u]->color=colores_disponibles[indice_crand];
 			}
 		}
 	G->nro_colores=color_maximo;

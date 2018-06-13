@@ -55,15 +55,6 @@ struct _Queue_t {
 	u32 tail;
 	PVertice *theQueue;
 };
-/*Definición de Estructura Linked List*/
-typedef struct _Node_t *linklist;
-typedef struct _Node_t *node;
-
-
-struct _Node_t {
-	u32 value;
-	node next;
-};
 
 /* FUNCIONES */
 
@@ -74,11 +65,6 @@ void Enqueue(Queue q, PVertice v);
 PVertice Dequeue(Queue q);
 u32 isEmpty(Queue q);
 /*----------------------------------------------------------------------------------------------------*/
-/*Funciones del TAD LinkedList*/
-void LLconsecutiva(linklist ll,u32 n);
-bool FindAndRemove(linklist ll,u32 valuetoremove);/*true si borra un elemento o false si no esta en la lista el elemnto a borrar*/
-void DestroyLL(linklist ll);
-u32 randmon_color_ll(linklist ll,u32 index);
 /*----------------------------------------------------------------------------------------------------*/
 /* Funciones Auxiliares de Carga del Grafo */
 /*----------------------------------------------------------------------------------------------------*/
