@@ -38,7 +38,7 @@ int cmpfunccolor (const void * a, const void * b) {
 int cmpfunccantcolor (const void * a, const void * b) {
   PVertice vertice_1 = *(PVertice*)a;
   PVertice vertice_2 = *(PVertice*)b;
-  int resultado = (vertice_1->cant_de_colores)-(vertice_2->cant_de_colores);
+  int resultado = (vertice_1->cant_de_colores > vertice_2->cant_de_colores) - (vertice_2->cant_de_colores > vertice_1->cant_de_colores);
   return resultado;
 }
 
@@ -63,10 +63,15 @@ void ReordenManteniendoBloqueColores(Grafo G,u32 x) {
     if (x == 0) {
         qsort(G->orden, G->nro_vertices, sizeof(PVertice), cmpfunccolor);
     } else if (x == 1) {
+      u32 cant_cada_color[G->nro_colores+1];
+      memset(cant_cada_color, 0, (G->nro_colores + 1)*sizeof(u32));
       for (u32 i = 0; i<G->nro_vertices; i++) {
-        G->orden[i]->cant_de_colores = NumeroDeVerticesDeColor(G, G->orden[i]->color);
+        cant_cada_color[G->orden[i]->color] += 1;
       }
-      qsort(G->orden, G->nro_vertices, sizeof(PVertice), cmpfunccolor);
+      for (u32 i = 0; i<G->nro_vertices; i++) {
+        G->orden[i]->cant_de_colores = cant_cada_color[G->orden[i]->color];
+      }
+      // qsort(G->orden, G->nro_vertices, sizeof(PVertice), cmpfunccolor);
       qsort(G->orden, G->nro_vertices, sizeof(PVertice), cmpfunccantcolor);
     } else if (x > 1) {
       u32 seed = x;
