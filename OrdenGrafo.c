@@ -38,7 +38,12 @@ int cmpfunccolor (const void * a, const void * b) {
 int cmpfunccantcolor (const void * a, const void * b) {
   PVertice vertice_1 = *(PVertice*)a;
   PVertice vertice_2 = *(PVertice*)b;
-  int resultado = (vertice_1->cant_de_colores > vertice_2->cant_de_colores) - (vertice_2->cant_de_colores > vertice_1->cant_de_colores);
+  int resultado;
+  if (vertice_1->cant_de_colores == vertice_2->cant_de_colores) {
+    resultado = (vertice_2->color )-(vertice_1->color);
+  } else {
+    resultado = (vertice_1->cant_de_colores > vertice_2->cant_de_colores) - (vertice_1->cant_de_colores < vertice_2->cant_de_colores);
+  }
   return resultado;
 }
 
@@ -67,6 +72,9 @@ void ReordenManteniendoBloqueColores(Grafo G,u32 x) {
       memset(cant_cada_color, 0, (G->nro_colores + 1)*sizeof(u32));
       for (u32 i = 0; i<G->nro_vertices; i++) {
         cant_cada_color[G->orden[i]->color] += 1;
+      }
+      for (u32 i = 0; i<G->nro_colores + 1; i++) {
+        printf("COLOR: %u CANT: %u\n", i, cant_cada_color[i]);
       }
       for (u32 i = 0; i<G->nro_vertices; i++) {
         G->orden[i]->cant_de_colores = cant_cada_color[G->orden[i]->color];
