@@ -34,6 +34,7 @@ int main(){
 		clock_t tiempo_inicio;
 		clock_t tiempo_final;
 		double segundos;
+		double minutos;
 		tiempo_inicio = clock();
 		Grafo g = ConstruccionDelGrafo();
 		printf("CARGUE EL GRAFO\n" );
@@ -100,10 +101,24 @@ int main(){
 		printf("NotSoGreedy Inmediatamente despues de aplicar Wesh Powell con semilla 1 : %u\n", NotSoGreedy(g,1));
 		*/
 /*--------------------------------------------------------------- */
-
+u32 bloque = 0;
+u32 natural = 0;
 for(u32 i=0; i<1000;i++){
-	u32 u=NotSoGreedy(g,i);
-	printf("COLOREO: %u\n",u );
+	if (i % 2 == 0) {
+		OrdenNatural(g);
+		natural=NotSoGreedy(g,i);
+		printf("ESTOY EN ORDEN NATURAL \n");
+		printf("COLOREO %u EN EL PASO : %u\n",natural, i );
+	} else {
+		ReordenManteniendoBloqueColores(g,1);
+		bloque=NotSoGreedy(g,i);
+		printf("ESTOY EN REAORDENAMIENTO BLOQUE BLOQUE COLOR CON X = 1 \n");
+		printf("COLOREO %u EN EL PASO : %u\n",bloque, i );
+	}
+	if (bloque > natural) {
+		printf("ESTAMOS JODIDOSSSSSSSSSSSSSSSSS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n");
+	}
+	//printf("COLOREO %u EN EL PASO : %u\n",u, i );
 }
 /*--------------------------------------------------------------- */
 		/*
@@ -112,6 +127,7 @@ for(u32 i=0; i<1000;i++){
 			printf("ORDEN BLOQUE 0: %u\n", g->orden[i]->color);
 		printf("NotSoGreedy Inmediatamente despues de aplicar ReordenManteniendoBloqueColores con semilla 0 y NotSoGreedy con semilla 1: %u\n", NotSoGreedy(g,1));
 		*/
+		
 		//ReordenManteniendoBloqueColores(g, 1);
 		//for(u32 i = 0; i< NumeroDeVertices(g); i++)
 			//printf("%u\n", g->orden[i]->nombre);
@@ -157,7 +173,9 @@ for(u32 i=0; i<1000;i++){
 
 		tiempo_final = clock();
 		segundos = (double)(tiempo_final - tiempo_inicio) / CLOCKS_PER_SEC;
-		printf("TIEMPO : %f\n",segundos);
+		printf("TIEMPO EN SEGUNDOS : %f\n",segundos);
+		minutos = segundos / 60;
+		printf("TIMEPO EN MINUTOS: %f\n", minutos);
 		DestruccionDelGrafo(g);
 
 }
