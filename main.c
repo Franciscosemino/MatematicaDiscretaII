@@ -103,11 +103,30 @@ int main(){
 /*--------------------------------------------------------------- */
 u32 bloque = 0;
 u32 natural = 0;
-for(u32 i=0; i<1000;i++){
+printf("/*--------------------------------------------------------------------------------- */\n");
+printf("PRIMERAS 10 ITERACIONES ALTERNANDO ENTRE ORDEN NATURAL O BLOQUE COLOR CON X = 0\n");
+printf("/*--------------------------------------------------------------------------------- */\n");
+for(u32 i=0; i<10;i++){
 	if (i % 2 == 0) {
 		OrdenNatural(g);
 		natural=NotSoGreedy(g,i);
-		printf("ESTOY EN ORDEN NATURAL \n");
+		printf("ESTOY EN ORDEN NATURAL ANTES DE BLOQUE COLOR CON X = 0 \n");
+		printf("COLOREO %u EN EL PASO : %u\n",natural, i );
+	} else {
+		ReordenManteniendoBloqueColores(g,0);
+		bloque=NotSoGreedy(g,i);
+		printf("ESTOY EN REAORDENAMIENTO BLOQUE BLOQUE COLOR CON X = 0 \n");
+		printf("COLOREO %u EN EL PASO : %u\n",bloque, i );
+	}
+}
+printf("/*--------------------------------------------------------------------------------- */\n");
+printf("SEGUNDAS 10 ITERACIONES ALTERNANDO ENTRE ORDEN NATURAL O BLOQUE COLOR CON X = 1\n");
+printf("/*--------------------------------------------------------------------------------- */\n");
+for(u32 i=0; i<10;i++){
+	if (i % 2 == 0) {
+		OrdenNatural(g);
+		natural=NotSoGreedy(g,i);
+		printf("ESTOY EN ORDEN NATURAL ANTES DE BLOQUE COLOR CON X = 1 \n");
 		printf("COLOREO %u EN EL PASO : %u\n",natural, i );
 	} else {
 		ReordenManteniendoBloqueColores(g,1);
@@ -115,10 +134,22 @@ for(u32 i=0; i<1000;i++){
 		printf("ESTOY EN REAORDENAMIENTO BLOQUE BLOQUE COLOR CON X = 1 \n");
 		printf("COLOREO %u EN EL PASO : %u\n",bloque, i );
 	}
-	if (bloque > natural) {
-		printf("ESTAMOS JODIDOSSSSSSSSSSSSSSSSS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n");
+}
+printf("/*--------------------------------------------------------------------------------- */\n");
+printf("TERCERAS 10 ITERACIONES ALTERNANDO ENTRE ORDEN NATURAL O BLOQUE COLOR CON X > 1\n");
+printf("/*--------------------------------------------------------------------------------- */\n");
+for(u32 i=0; i<10;i++){
+	if (i % 2 == 0) {
+		OrdenNatural(g);
+		natural=NotSoGreedy(g,i);
+		printf("ESTOY EN ORDEN NATURAL ANTES DE BLOQUE COLOR CON X > 1 \n");
+		printf("COLOREO %u EN EL PASO : %u\n",natural, i );
+	} else {
+		ReordenManteniendoBloqueColores(g,2);
+		bloque=NotSoGreedy(g,i);
+		printf("ESTOY EN REAORDENAMIENTO BLOQUE BLOQUE COLOR CON X > 1 \n");
+		printf("COLOREO %u EN EL PASO : %u\n",bloque, i );
 	}
-	//printf("COLOREO %u EN EL PASO : %u\n",u, i );
 }
 /*--------------------------------------------------------------- */
 		/*
